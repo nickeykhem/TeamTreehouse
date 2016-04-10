@@ -15,8 +15,8 @@ $urls = array(
    // 'itpc://teamtreehouse.com/library/media-queries.rss?feed_token='.$token,
    // 'itpc://teamtreehouse.com/library/treehouse-friends.rss?feed_token='.$token,
    // 'itpc://teamtreehouse.com/library/future-insights-live-2014.rss?feed_token='.$token,
-   // 'itpc://teamtreehouse.com/library/using-php-with-mysql.rss?feed_token='.$token,
-   'itpc://teamtreehouse.com/library/how-to-market-your-business.rss?feed_token='.$token,
+   'itpc://teamtreehouse.com/library/objectoriented-javascript.rss?feed_token='.$token,
+   //'itpc://teamtreehouse.com/library/introduction-to-php7.rss?feed_token='.$token,
 );
 
 foreach ($urls as $url):
@@ -27,18 +27,21 @@ foreach ($urls as $url):
     echo '<h2>'.$xml->channel[0]->title.'</h2>';
     //echo '<ol>'
     foreach ($xml->channel->item as $pixinfo):
-    	$numb++;
+        $numb++;
         $title=$pixinfo->title;
         $link=$pixinfo->enclosure['url'];
         // In chrome the HTML5 download attribute will auto download, no right clicking necessary
         // Hold Alt plus Click will autodownload
         echo $numb. ' '.'<a href="'.$link.'">'. $title .'</a><br>';
+        ?>
+        <video width="320" height="240" controls>
+          <? echo '<source src="'.$link.'" type="video/mp4">' ?>
+        </video>
+        <br><br>
+        <?
         //echo $numb. ' '.'<a href="'.$link.'" download>'. $title .'</a><br>'; THIS VERSION INITATES download onclick for chrome only!
         //echo '</li>'
     endforeach; 
    // echo '</ol>'
 endforeach; 
-
-
-
 ?>
